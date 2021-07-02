@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/main_recyclerview_background"
+    android:padding="20dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_recycler_new_auctions"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/b"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_recycler_tj_new_auctions"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Hatchback"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_recycler_date_new_auctions"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Hatchback"
+
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_recycler_belong_new_auctions"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="view 32 cars >"
+            android:layout_gravity="left"
+            android:textColor="@color/main_table_color2"
+            android:paddingBottom="20dp"/>
+
+
+
+
+
+</LinearLayout>
