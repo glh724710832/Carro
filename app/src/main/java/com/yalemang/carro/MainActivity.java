@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
     private void addCarPhoto() {
         Log.d(TAG, "addCarPhoto: 死在这");
         carBeanList.add(new CarBean(R.mipmap.a, "SUV", "view 30 cars >", "[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat","2018 Honda CR_V LX","Rp 70 - 90 juta","Qty:30"));
-        carBeanList.add(new CarBean(R.mipmap.b, "T", "view 31 cars >","[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat","2018 Honda CR_V LX","Rp 70 - 90 juta","Qty:30"));
         carBeanList.add(new CarBean(R.mipmap.c, "CAR", "view 30 cars","[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat","2018 Honda CR_V LX","Rp 70 - 90 juta","Qty:30"));
         carBeanList.add(new CarBean(R.mipmap.d, "SUV", "view 30 cars","[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat","2018 Honda CR_V LX","Rp 70 - 90 juta","Qty:30"));
         carBeanList.add(new CarBean(R.mipmap.e, "SUV", "view 30 cars","[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat","2018 Honda CR_V LX","Rp 70 - 90 juta","Qty:30"));
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         titleBeansList.add(new TitleBean("Popular Categprles"));
         titleBeansList.add(new TitleBean("New Auctions"));
         titleBeansList.add(new TitleBean("Popular Categprles"));
-        titleBeansList.add(new TitleBean("Popular Categprles"));
+        titleBeansList.add(new TitleBean("Latest New Car Listings"));
 
 
     }
