@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="280dp"
     android:orientation="horizontal">
+
     <ImageView
         android:id="@+id/five_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/best"
-        android:scaleType="centerCrop"/>
-
+        android:scaleType="centerCrop"
+        android:src="@mipmap/best" />
 
 </LinearLayout>

@@ -26,6 +26,9 @@ import com.yalemang.until.SpacesItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
@@ -112,7 +115,6 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
             viewArrayList.add(LayoutInflater.from(context).inflate(R.layout.view_pager_four, null));
             viewArrayList.add(LayoutInflater.from(context).inflate(R.layout.view_pager_five, null));
 
-
 //                LayoutInflater layoutInflater = getLayoutInflater();
 //                viewArrayList.add(getLayoutInflater().inflate(R.layout.view_pager_one, null, false));
 //
@@ -122,9 +124,9 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_three, null, false));
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_four, null, false));
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_five, null, false));
-
-
-            //为什么不能直接.setImageResource，要创建一个实例？
+            /**
+             * 为什么不能直接.setImageResource，要创建一个实例？
+             */
             ImageView imageView = viewArrayList.get(0).findViewById(R.id.one_iv);
             imageView.setImageResource(R.mipmap.c);
 
@@ -137,9 +139,9 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
         } else if (holder instanceof TypePopularCategorlesViewHolder) {
             TypePopularCategorlesViewHolder typePopularCategorlesViewHolder = (TypePopularCategorlesViewHolder) holder;
-            typePopularCategorlesViewHolder.tv_title_popular_categprles.setText(titleBeansList.get(postions).getTitle());
+            typePopularCategorlesViewHolder.tvTitlePopularCategorles.setText(titleBeansList.get(postions).getTitle());
 
-            //diyige效果展示
+            //第一个效果展示
             LinearLayoutManager popularCategorlesLinearLayoutManager = new LinearLayoutManager(context);
             popularCategorlesLinearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
             typePopularCategorlesViewHolder.popularCategorlesRecyclerView.setLayoutManager(popularCategorlesLinearLayoutManager);
@@ -155,7 +157,7 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
         } else if (holder instanceof TypeNewAuctionsViewHolder) {
             TypeNewAuctionsViewHolder typeNewAuctionsViewHolder = (TypeNewAuctionsViewHolder) holder;
-            typeNewAuctionsViewHolder.tv_title_new_auctions.setText(titleBeansList.get(postions).getTitle());
+            typeNewAuctionsViewHolder.tvTitleNewAuctions.setText(titleBeansList.get(postions).getTitle());
 
             //第二个效果展示
             LinearLayoutManager newAuctionsViewLinearLayoutManager = new LinearLayoutManager(context);
@@ -172,7 +174,7 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
             typeNewAuctionsViewHolder.newAuctionsRecyclerView.addItemDecoration(new SpacesItemDecoration(space));
         } else if (holder instanceof TypePopularBidsViewHolder) {
             TypePopularBidsViewHolder typePopularBidsViewHolder = (TypePopularBidsViewHolder) holder;
-            typePopularBidsViewHolder.tv_title_popular_bids.setText(titleBeansList.get(postions).getTitle());
+            typePopularBidsViewHolder.tvTitlePopularBids.setText(titleBeansList.get(postions).getTitle());
 
             //第三个效果展示
             GridLayoutManager popularBidsViewgridLayoutManager = new GridLayoutManager(context, 2);
@@ -194,7 +196,7 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
         } else if (holder instanceof TypeLatestNewCarListingsViewHolder) {
             TypeLatestNewCarListingsViewHolder typeLatestNewCarListingsViewHolder = (TypeLatestNewCarListingsViewHolder) holder;
-            typeLatestNewCarListingsViewHolder.tv_title_latest_new_car_listings.setText(titleBeansList.get(postions).getTitle());
+            typeLatestNewCarListingsViewHolder.tvTitleLatestNewCarListings.setText(titleBeansList.get(postions).getTitle());
 
 
             //第四个效果展示
@@ -225,7 +227,6 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
         ViewPager viewPager;
 
-
         public TypeBannerViewHolder(View itemView) {
             super(itemView);
             viewPager = itemView.findViewById(R.id.view_pager_main);
@@ -235,48 +236,48 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public class TypePopularCategorlesViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title_popular_categprles;
+        TextView tvTitlePopularCategorles;
         RecyclerView popularCategorlesRecyclerView;
 
         public TypePopularCategorlesViewHolder(View itemView) {
             super(itemView);
-            tv_title_popular_categprles = itemView.findViewById(R.id.tv_title_popular_categprles);
+            tvTitlePopularCategorles = itemView.findViewById(R.id.tv_title_popular_categprles);
             popularCategorlesRecyclerView = itemView.findViewById(R.id.popular_categprles_recyclerview);
         }
     }
 
     public class TypeNewAuctionsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title_new_auctions;
+        TextView tvTitleNewAuctions;
         RecyclerView newAuctionsRecyclerView;
 
         public TypeNewAuctionsViewHolder(View itemView) {
             super(itemView);
-            tv_title_new_auctions = itemView.findViewById(R.id.tv_title_new_auctions);
+            tvTitleNewAuctions = itemView.findViewById(R.id.tv_title_new_auctions);
             newAuctionsRecyclerView = itemView.findViewById(R.id.new_auctions_recyclerview);
         }
     }
 
     public class TypePopularBidsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title_popular_bids;
+        TextView tvTitlePopularBids;
         RecyclerView popularBidsRecyclerView;
 
         public TypePopularBidsViewHolder(View itemView) {
             super(itemView);
-            tv_title_popular_bids = itemView.findViewById(R.id.tv_title_popular_bids);
+            tvTitlePopularBids = itemView.findViewById(R.id.tv_title_popular_bids);
             popularBidsRecyclerView = itemView.findViewById(R.id.popular_bids_recyclerview);
         }
     }
 
     public class TypeLatestNewCarListingsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title_latest_new_car_listings;
+        TextView tvTitleLatestNewCarListings;
         RecyclerView latestNewCarListingsRecyclerView;
 
         public TypeLatestNewCarListingsViewHolder(View itemView) {
             super(itemView);
-            tv_title_latest_new_car_listings = itemView.findViewById(R.id.tv_title_latest_new_car_listings);
+            tvTitleLatestNewCarListings = itemView.findViewById(R.id.tv_title_latest_new_car_listings);
             latestNewCarListingsRecyclerView = itemView.findViewById(R.id.latest_new_car_listings_recyclerview);
         }
     }

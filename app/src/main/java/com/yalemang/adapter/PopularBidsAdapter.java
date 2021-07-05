@@ -23,9 +23,9 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
     private Context context;
     private List<CarBean> carBeanList;
     private OnItemClickListener onItemClickListener;
-    Set<Integer> onItemClickSet;;
+    Set<Integer> onItemClickSet;
 
-    public PopularBidsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener){
+    public PopularBidsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.onItemClickListener = onItemClickListener;
@@ -34,8 +34,8 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
 
 
     @Override
-    public PopularBidsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_bids,null);
+    public PopularBidsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_bids, null);
         PopularBidsViewHolder popularBidsViewHolder = new PopularBidsViewHolder(view);
         return popularBidsViewHolder;
     }
@@ -43,28 +43,28 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
     @Override
     public void onBindViewHolder(PopularBidsAdapter.PopularBidsViewHolder holder, int position) {
 
-        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.iv_recycler_popular_bids);
+        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewPopularBids);
 
-        holder.tv_recycler_tj_popular_bids.setText(carBeanList.get(position).getTj());
-        holder.tv_recycler_date_popular_bids.setText(carBeanList.get(position).getDate());
-        holder.tv_recycler_belong_popular_bids.setText(carBeanList.get(position).getBelong());
-        holder.iv_recycler_popular_bids.setOnClickListener(new View.OnClickListener() {
+        holder.tvRecyclerViewTjPopularBids.setText(carBeanList.get(position).getTj());
+        holder.tvRecyclerViewDatePopularBids.setText(carBeanList.get(position).getDate());
+        holder.tvRecyclerViewBelongPopularBids.setText(carBeanList.get(position).getBelong());
+        holder.ivRecyclerViewPopularBids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onItemClickListener.onItemClick(position,holder.itemView);
+                        onItemClickListener.onItemClick(position, holder.itemView);
                         boolean isAdd = onItemClickSet.add(position);
-                        if(!isAdd){
+                        if (!isAdd) {
                             holder.itemView.setBackgroundColor(Color.GRAY);
                             onItemClickSet.remove(position);
                         }
                     }
                 });
-                if(onItemClickSet.contains(position)){
+                if (onItemClickSet.contains(position)) {
                     holder.itemView.setBackgroundColor(Color.RED);
-                }else {
+                } else {
                     holder.itemView.setBackgroundColor(Color.GRAY);
                 }
             }
@@ -79,21 +79,22 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
     }
 
     public static class PopularBidsViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_recycler_popular_bids ;
-        TextView tv_recycler_tj_popular_bids;
-        TextView tv_recycler_date_popular_bids;
-        TextView tv_recycler_belong_popular_bids;
-        public PopularBidsViewHolder( View itemView) {
+        ImageView ivRecyclerViewPopularBids;
+        TextView tvRecyclerViewTjPopularBids;
+        TextView tvRecyclerViewDatePopularBids;
+        TextView tvRecyclerViewBelongPopularBids;
+
+        public PopularBidsViewHolder(View itemView) {
             super(itemView);
-            iv_recycler_popular_bids = itemView.findViewById(R.id.iv_recycler_popular_bids);
-            tv_recycler_tj_popular_bids = itemView.findViewById(R.id.tv_recycler_tj_popular_bids);
-            tv_recycler_date_popular_bids = itemView.findViewById(R.id.tv_recycler_date_popular_bids);
-            tv_recycler_belong_popular_bids = itemView.findViewById(R.id.tv_recycler_belong_popular_bids);
+            ivRecyclerViewPopularBids = itemView.findViewById(R.id.iv_recycler_popular_bids);
+            tvRecyclerViewTjPopularBids = itemView.findViewById(R.id.tv_recycler_tj_popular_bids);
+            tvRecyclerViewDatePopularBids = itemView.findViewById(R.id.tv_recycler_date_popular_bids);
+            tvRecyclerViewBelongPopularBids = itemView.findViewById(R.id.tv_recycler_belong_popular_bids);
         }
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(int position,View view);
+    public interface OnItemClickListener {
+        void onItemClick(int position, View view);
     }
 
 

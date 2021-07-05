@@ -9,12 +9,15 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * @author Administrator
+ */
 public class MainViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private ArrayList<View> viewArrayList;
 
-    public MainViewPagerAdapter(Context context,ArrayList<View> viewArrayList){
+    public MainViewPagerAdapter(Context context, ArrayList<View> viewArrayList) {
         this.context = context;
         this.viewArrayList = viewArrayList;
     }
@@ -25,20 +28,20 @@ public class MainViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject( View view,  Object object) {
+    public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
 
 
     @Override
-    public Object instantiateItem( ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         container.addView(viewArrayList.get(position));
         return viewArrayList.get(position);
     }
 
     @Override
-    public void destroyItem( ViewGroup container, int position,  Object object) {
-//        super.destroyItem(container, position, object);
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
         container.removeView(viewArrayList.get(position));
     }
 }
