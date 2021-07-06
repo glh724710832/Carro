@@ -41,6 +41,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
             android:background="@drawable/search_shape"
             android:drawableLeft="@mipmap/search"
             android:hint="@string/search_for_make_model_submodel"
