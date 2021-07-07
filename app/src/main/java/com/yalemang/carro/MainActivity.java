@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     String json = response.body().string();
                     Gson gson = new Gson();
                     CarroBean carroBean = gson.fromJson(json, CarroBean.class);
+                    Log.d(TAG, " 测试" );
                     Log.d(TAG, "requestLogin: " + carroBean.getData().getModel());
                 } else {
                     //服务器返回404 505类错误
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
 
