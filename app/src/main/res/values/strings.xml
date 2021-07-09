@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Carro</string>
     <string name="search_for_make_model_submodel">Search&#032;for&#032;make&#044;model&#044;submodel</string>
-
+    <string name="prompt">View all information about your subscription and get any help you require</string>
+    <string name="manage_your_subscription">Manage Your Subscription</string>
+    <string name="enhance_your_subscription">Enhance Your Subscription</string>
+    <string name="concierge_service_title">Concierge Service</string>
+    <string name="concierge_service_content">Take away the hassle of car ownership and enjoy full comfort and convenience with our concierge service</string>
+    <string name="customize_insurance">Customize your insurance</string>
 </resources>

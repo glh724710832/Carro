@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_table_color">#f15a22</color>
     <color name="main_table_color2">#f36c21</color>
+    <color name="user_information">#f36c21</color>
     <color name="main_recyclerview_background">#cdcdcd</color>
 </resources>

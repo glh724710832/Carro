@@ -1,6 +1,7 @@
 package com.yalemang.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.yalemang.bean.CarBean;
 import com.yalemang.bean.TitleBean;
 import com.yalemang.carro.Hello;
 import com.yalemang.carro.R;
+import com.yalemang.carro.UserInformationActivity;
 import com.yalemang.until.GridSpacingItemDecoration;
 import com.yalemang.until.SpacesItemDecoration;
 
@@ -155,6 +157,7 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
             int space = 15;
             typePopularCategorlesViewHolder.popularCategorlesRecyclerView.addItemDecoration(new SpacesItemDecoration(space));
 
+
         } else if (holder instanceof TypeNewAuctionsViewHolder) {
             TypeNewAuctionsViewHolder typeNewAuctionsViewHolder = (TypeNewAuctionsViewHolder) holder;
             typeNewAuctionsViewHolder.tvTitleNewAuctions.setText(titleBeansList.get(postions).getTitle());
@@ -238,11 +241,13 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
         TextView tvTitlePopularCategorles;
         RecyclerView popularCategorlesRecyclerView;
+        TextView seeMore;
 
         public TypePopularCategorlesViewHolder(View itemView) {
             super(itemView);
             tvTitlePopularCategorles = itemView.findViewById(R.id.tv_title_popular_categprles);
             popularCategorlesRecyclerView = itemView.findViewById(R.id.popular_categprles_recyclerview);
+            seeMore = itemView.findViewById(R.id.tv_see_more_popular_categprles);
         }
     }
 

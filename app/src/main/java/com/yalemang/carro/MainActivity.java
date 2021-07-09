@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
 
 
 import com.google.gson.Gson;
@@ -30,6 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -42,6 +45,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
 
+    TextView user;
     List<CarBean> carBeanList = new ArrayList<>();
     List<TitleBean> titleBeansList = new ArrayList<>();
     RecyclerView mainRecyclerView;
@@ -61,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         addCarPhoto();
         initData();
         requestLogin();
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void requestLogin() {
@@ -85,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     String json = response.body().string();
                     Gson gson = new Gson();
                     CarroBean carroBean = gson.fromJson(json, CarroBean.class);
-                    Log.d(TAG, " 测试" );
+                    Log.d(TAG, " 测试");
                     Log.d(TAG, "requestLogin: " + carroBean.getData().getModel());
                 } else {
                     //服务器返回404 505类错误
@@ -111,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         Log.d(TAG, "initView: 死在这");
         mainRecyclerView = findViewById(R.id.recycler_view_main);
+        user = findViewById(R.id.used_tv);
     }
 
     private void addCarPhoto() {
