@@ -1,10 +1,12 @@
 package com.yalemang.carro;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +18,7 @@ import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.gson.Gson;
@@ -33,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -55,7 +60,37 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static String Url = "https://gist.githubusercontent.com/heinhtetaung92/fbfd371881e6982c71971eedd5732798/raw/00e14e0e5502dbcf1ea9a2cdc44324fd3a5492e7/test.json ";
 
+    @OnClick({R.id.used_tv})
+     void onClick(View view){
+        switch (view.getId()){
+            case R.id.used_tv:
 
+                final String[] area = new String[]{"新加坡", "泰国"};
+                AlertDialog dialog = null;
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                dialog = builder.setIcon(R.mipmap.used)
+                        .setTitle("请选择您所在的地区")
+                        .setItems(area, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "你选择了" + area[which], Toast.LENGTH_SHORT).show();
+
+                                int  areaNumber = which;
+                                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
+                                intent.putExtra("areaNumber",areaNumber);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create();
+                dialog.show();
+
+
+                break;
+            default:
+        }
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +99,8 @@ public class MainActivity extends AppCompatActivity {
         initView();
         addCarPhoto();
         initData();
-        requestLogin();
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        //requestLogin();
+
     }
 
     private void requestLogin() {
@@ -123,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         Log.d(TAG, "initView: 死在这");
         mainRecyclerView = findViewById(R.id.recycler_view_main);
-        user = findViewById(R.id.used_tv);
+        //user = findViewById(R.id.used_tv);
+        ButterKnife.bind(this);
     }
 
     private void addCarPhoto() {

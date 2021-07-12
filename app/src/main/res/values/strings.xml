@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Carro</string>
     <string name="search_for_make_model_submodel">Search&#032;for&#032;make&#044;model&#044;submodel</string>
-    <string name="prompt">View all information about your subscription and get any help you require</string>
-    <string name="manage_your_subscription">Manage Your Subscription</string>
-    <string name="enhance_your_subscription">Enhance Your Subscription</string>
-    <string name="concierge_service_title">Concierge Service</string>
-    <string name="concierge_service_content">Take away the hassle of car ownership and enjoy full comfort and convenience with our concierge service</string>
-    <string name="customize_insurance">Customize your insurance</string>
+    <string name="prompt">View&#032;all&#032;information&#032;about&#032;your&#032;subscription&#032;and&#032;get&#032;any&#032;help&#032;you&#032;require</string>
+    <string name="manage_your_subscription">Manage&#032;Your&#032;Subscription</string>
+    <string name="enhance_your_subscription">Enhance&#032;Your&#032;Subscription</string>
+    <string name="concierge_service_title">Concierge&#032;Service</string>
+    <string name="concierge_service_content">Take&#032;away&#032;the&#032;hassle&#032;of&#032;car&#032;ownership&#032;and&#032;enjoy&#032;full&#032;comfort&#032;and&#032;convenience&#032;with&#032;our&#032;concierge&#032;service</string>
+    <string name="customize_insurance">Customize&#032;your&#032;insurance</string>
+    <string name="url">https://gist.githubusercontent.com/heinhtetaung92/fbfd371881e6982c71971eedd5732798/raw/00e14e0e5502dbcf1ea9a2cdc44324fd3a5492e7/test.json </string>
 </resources>

@@ -1,16 +1,13 @@
 package com.yalemang.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.yalemang.bean.CarBean;
 import com.yalemang.bean.TitleBean;
-import com.yalemang.carro.Hello;
 import com.yalemang.carro.R;
-import com.yalemang.carro.UserInformationActivity;
 import com.yalemang.until.GridSpacingItemDecoration;
 import com.yalemang.until.SpacesItemDecoration;
 
