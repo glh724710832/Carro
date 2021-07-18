@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,14 +18,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PopularCategorlesAdapter extends RecyclerView.Adapter<PopularCategorlesAdapter.PopularCategorlesViewHolder> {
+public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.PopularBidsViewHolder> {
 
     private Context context;
     private List<CarBean> carBeanList;
     private OnItemClickListener onItemClickListener;
     Set<Integer> onItemClickSet;
 
-    public PopularCategorlesAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
+    public PopularBidsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.onItemClickListener = onItemClickListener;
@@ -34,19 +34,21 @@ public class PopularCategorlesAdapter extends RecyclerView.Adapter<PopularCatego
 
 
     @Override
-    public PopularCategorlesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_categorles, null);
-        PopularCategorlesViewHolder popularCategorlesViewHolder = new PopularCategorlesViewHolder(view);
-        return popularCategorlesViewHolder;
+    public PopularBidsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_bids, null);
+        PopularBidsViewHolder popularBidsViewHolder = new PopularBidsViewHolder(view);
+        return popularBidsViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PopularCategorlesAdapter.PopularCategorlesViewHolder holder, int position) {
+    public void onBindViewHolder(PopularBidsAdapter.PopularBidsViewHolder holder, int position) {
 
-        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewPopularCategorles);
-        holder.tvRecyclerViewModelPopularCategorles.setText(carBeanList.get(position).getModel());
-        holder.tvRecyclerViewCarsPopularCategorles.setText(carBeanList.get(position).getViewCars());
-        holder.ivRecyclerViewPopularCategorles.setOnClickListener(new View.OnClickListener() {
+        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewPopularBids);
+
+        holder.tvRecyclerViewTjPopularBids.setText(carBeanList.get(position).getTj());
+        holder.tvRecyclerViewDatePopularBids.setText(carBeanList.get(position).getDate());
+        holder.tvRecyclerViewBelongPopularBids.setText(carBeanList.get(position).getBelong());
+        holder.ivRecyclerViewPopularBids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -76,20 +78,24 @@ public class PopularCategorlesAdapter extends RecyclerView.Adapter<PopularCatego
         return carBeanList.size();
     }
 
-    public static class PopularCategorlesViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivRecyclerViewPopularCategorles;
-        TextView tvRecyclerViewModelPopularCategorles;
-        TextView tvRecyclerViewCarsPopularCategorles;
+    public static class PopularBidsViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivRecyclerViewPopularBids;
+        TextView tvRecyclerViewTjPopularBids;
+        TextView tvRecyclerViewDatePopularBids;
+        TextView tvRecyclerViewBelongPopularBids;
 
-        public PopularCategorlesViewHolder(View itemView) {
+        public PopularBidsViewHolder(View itemView) {
             super(itemView);
-            ivRecyclerViewPopularCategorles = itemView.findViewById(R.id.iv_recycler_popular_categorles);
-            tvRecyclerViewModelPopularCategorles = itemView.findViewById(R.id.tv_recycler_model_popular_categorles);
-            tvRecyclerViewCarsPopularCategorles = itemView.findViewById(R.id.tv_recycler_cars_popular_categorles);
+            ivRecyclerViewPopularBids = itemView.findViewById(R.id.iv_recycler_popular_bids);
+            tvRecyclerViewTjPopularBids = itemView.findViewById(R.id.tv_recycler_tj_popular_bids);
+            tvRecyclerViewDatePopularBids = itemView.findViewById(R.id.tv_recycler_date_popular_bids);
+            tvRecyclerViewBelongPopularBids = itemView.findViewById(R.id.tv_recycler_belong_popular_bids);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position, View view);
     }
+
+
 }

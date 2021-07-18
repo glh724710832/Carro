@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;

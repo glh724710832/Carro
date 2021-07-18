@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,17 +18,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author Administrator
- */
-public class NewAuctionsAdapter extends RecyclerView.Adapter<NewAuctionsAdapter.NewAuctionsViewHolder> {
+public class PopularCategorlesAdapter extends RecyclerView.Adapter<PopularCategorlesAdapter.PopularCategorlesViewHolder> {
 
     private Context context;
     private List<CarBean> carBeanList;
     private OnItemClickListener onItemClickListener;
     Set<Integer> onItemClickSet;
 
-    public NewAuctionsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
+    public PopularCategorlesAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.onItemClickListener = onItemClickListener;
@@ -37,21 +34,19 @@ public class NewAuctionsAdapter extends RecyclerView.Adapter<NewAuctionsAdapter.
 
 
     @Override
-    public NewAuctionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_new_auctions, null);
-        NewAuctionsViewHolder newAuctionsViewHolder = new NewAuctionsViewHolder(view);
-        return newAuctionsViewHolder;
+    public PopularCategorlesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_categorles, null);
+        PopularCategorlesViewHolder popularCategorlesViewHolder = new PopularCategorlesViewHolder(view);
+        return popularCategorlesViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(NewAuctionsAdapter.NewAuctionsViewHolder holder, int position) {
+    public void onBindViewHolder(PopularCategorlesAdapter.PopularCategorlesViewHolder holder, int position) {
 
-        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewNewAuctions);
-
-        holder.tvRecyclerViewTjNewAuctions.setText(carBeanList.get(position).getTj());
-        holder.tvRecyclerViewDateNewAuctions.setText(carBeanList.get(position).getDate());
-        holder.tvRecyclerViewBelongNewAuctions.setText(carBeanList.get(position).getBelong());
-        holder.ivRecyclerViewNewAuctions.setOnClickListener(new View.OnClickListener() {
+        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewPopularCategorles);
+        holder.tvRecyclerViewModelPopularCategorles.setText(carBeanList.get(position).getModel());
+        holder.tvRecyclerViewCarsPopularCategorles.setText(carBeanList.get(position).getViewCars());
+        holder.ivRecyclerViewPopularCategorles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +68,7 @@ public class NewAuctionsAdapter extends RecyclerView.Adapter<NewAuctionsAdapter.
             }
         });
 
+
     }
 
     @Override
@@ -80,24 +76,20 @@ public class NewAuctionsAdapter extends RecyclerView.Adapter<NewAuctionsAdapter.
         return carBeanList.size();
     }
 
-    public static class NewAuctionsViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivRecyclerViewNewAuctions;
-        TextView tvRecyclerViewTjNewAuctions;
-        TextView tvRecyclerViewDateNewAuctions;
-        TextView tvRecyclerViewBelongNewAuctions;
+    public static class PopularCategorlesViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivRecyclerViewPopularCategorles;
+        TextView tvRecyclerViewModelPopularCategorles;
+        TextView tvRecyclerViewCarsPopularCategorles;
 
-        public NewAuctionsViewHolder(View itemView) {
+        public PopularCategorlesViewHolder(View itemView) {
             super(itemView);
-            ivRecyclerViewNewAuctions = itemView.findViewById(R.id.iv_recycler_new_auctions);
-            tvRecyclerViewTjNewAuctions = itemView.findViewById(R.id.tv_recycler_tj_new_auctions);
-            tvRecyclerViewDateNewAuctions = itemView.findViewById(R.id.tv_recycler_date_new_auctions);
-            tvRecyclerViewBelongNewAuctions = itemView.findViewById(R.id.tv_recycler_belong_new_auctions);
+            ivRecyclerViewPopularCategorles = itemView.findViewById(R.id.iv_recycler_popular_categorles);
+            tvRecyclerViewModelPopularCategorles = itemView.findViewById(R.id.tv_recycler_model_popular_categorles);
+            tvRecyclerViewCarsPopularCategorles = itemView.findViewById(R.id.tv_recycler_cars_popular_categorles);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position, View view);
     }
-
-
 }

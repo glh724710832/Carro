@@ -10,17 +10,18 @@ import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yalemang.bean.CarroBean;
-import com.yalemang.bean.SubscriptionBean;
+import com.yalemang.bean.CustomizeInsuranceBean;
+import com.yalemang.bean.EnhanceSubscriptionBean;
+import com.yalemang.bean.ManageSubscriptionBean;
 import com.yalemang.carro.R;
-import com.yalemang.until.SpacesItemDecoration;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,92 +30,139 @@ import java.util.List;
 public class UserInformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<CarroBean> carroBeanList;
-    private int areaNumber;
-    private List<SubscriptionBean> subscriptionOneBeanList;
-    private List<SubscriptionBean> subscriptionTwoBeanList;
-    private static final int USERINFORMATION = 0;
-    private static final int SUBSCRIPTION = 1;
+    private final List<CarroBean> carroBeanList;
+    private List<CustomizeInsuranceBean> customizeInsuranceBeanList;
+    private List<ManageSubscriptionBean> manageSubscriptionBeanList;
+    private List<EnhanceSubscriptionBean> enhanceSubscriptionBeanList;
+    private int countryCode;
 
-    public UserInformationAdapter(Context context, List<CarroBean> carroBeanList, int areaNumber) {
+    private List<ManageSubscriptionBean> subscriptionTwoBeanList;
+
+    private static final int CARINFORMATION = 0;
+    private static final int CUSTOMIZE_INSURANCE = 1;
+    private static final int MANAGE_SUBSCRIPTION = 2;
+    private static final int ENHANCE_SUBSCRIPTION = 3;
+
+    public UserInformationAdapter(Context context, List<CarroBean> carroBeanList,List<CustomizeInsuranceBean> customizeInsuranceBeanList,List<ManageSubscriptionBean> manageSubscriptionBeanList,List<EnhanceSubscriptionBean> enhanceSubscriptionBeanList, int countryCode) {
         this.context = context;
         this.carroBeanList = carroBeanList;
-        this.areaNumber = areaNumber;
+        this.customizeInsuranceBeanList = customizeInsuranceBeanList;
+        this.manageSubscriptionBeanList = manageSubscriptionBeanList;
+        this.enhanceSubscriptionBeanList = enhanceSubscriptionBeanList;
+        this.countryCode = countryCode;
     }
 
 
-
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        if (viewType == USERINFORMATION ){
-            View view = LayoutInflater.from(context).inflate(R.layout.item_user_information,null);
-            UserInformationHeadViewHolder userInformationHeadViewHolder = new UserInformationHeadViewHolder(view);
-            return userInformationHeadViewHolder;
-        }else if (viewType == SUBSCRIPTION){
-            View view = LayoutInflater.from(context).inflate(R.layout.item_subscription,null);
-            SubscriptionViewHolder subscriptionViewHolder = new SubscriptionViewHolder(view);
-            return subscriptionViewHolder;
-        }else {
-            return null;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == CARINFORMATION) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_carr_information, parent,false);
+            TypeCarInformationViewHolder typeCarInformationViewHolder = new TypeCarInformationViewHolder(view);
+            return typeCarInformationViewHolder;
+        } else if (viewType ==CUSTOMIZE_INSURANCE){
+            View view = LayoutInflater.from(context).inflate(R.layout.item_customize_insurance_information, parent,false);
+            TypeCustomizeInsuranceViewHolder typeCustomizeInsuranceViewHolder = new TypeCustomizeInsuranceViewHolder(view);
+
+            return typeCustomizeInsuranceViewHolder;
+        } else if (viewType == MANAGE_SUBSCRIPTION) {
+            //此处为item_manage_subscription
+            View view = LayoutInflater.from(context).inflate(R.layout.item_manage_subscription, parent,false);
+            TypeManageSubscriptionViewHolder typeManageSubscriptionViewHolder = new TypeManageSubscriptionViewHolder(view);
+            return typeManageSubscriptionViewHolder;
+        } else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_enhance_subscription, parent,false);
+            TypeEnhanceSubscriptionViewHolder typeEnhanceSubscriptionViewHolder = new TypeEnhanceSubscriptionViewHolder(view);
+            return typeEnhanceSubscriptionViewHolder;
         }
 
     }
 
     @Override
-    public void onBindViewHolder( RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof UserInformationHeadViewHolder) {
-            UserInformationHeadViewHolder userInformationHeadViewHolder = (UserInformationHeadViewHolder) holder;
-            userInformationHeadViewHolder.tvMakeModel.setText(carroBeanList.get(position).getData().getMake() + "   " + carroBeanList.get(position).getData().getModel());
-            userInformationHeadViewHolder.tvCarPlateNumber.setText(carroBeanList.get(position).getData().getCarplate_number());
-            userInformationHeadViewHolder.pbUserInformation.setMax(100);
-            userInformationHeadViewHolder.pbUserInformation.setProgress(70);
-            userInformationHeadViewHolder.tvContentDrivenThisMonth.setText(carroBeanList.get(position).getData().getDriven_this_month() + "  km");
-            userInformationHeadViewHolder.tvContentUsageDueThisMonth.setText("$" + carroBeanList.get(position).getData().getUsage_due_this_month() + "  / month");
+        if (holder instanceof TypeCarInformationViewHolder) {
+            TypeCarInformationViewHolder typeCarInformationViewHolder = (TypeCarInformationViewHolder) holder;
 
-            SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-            userInformationHeadViewHolder.tvLastUpdated.setText(("last updated :" + ft.format(carroBeanList.get(position).getData().getUpdated_at())));
+            typeCarInformationViewHolder.tvMakeModel.setText(carroBeanList.get(position).getData().getMake() + "   (" + carroBeanList.get(position).getData().getModel()+")");
+            typeCarInformationViewHolder.tvCarPlateNumber.setText(carroBeanList.get(position).getData().getCarplate_number());
+            typeCarInformationViewHolder.pbUserInformation.setMax(100);
+            typeCarInformationViewHolder.pbUserInformation.setProgress(70);
+            typeCarInformationViewHolder.tvContentDrivenThisMonth.setText(carroBeanList.get(position).getData().getDriven_this_month() + "  km");
+            typeCarInformationViewHolder.tvContentUsageDueThisMonth.setText("$  " + carroBeanList.get(position).getData().getUsage_due_this_month() + "  / month");
+            SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
+            typeCarInformationViewHolder.tvLastUpdated.setText(("last updated :" + ft.format(carroBeanList.get(position).getData().getUpdated_at())));
+        } else if (holder instanceof TypeCustomizeInsuranceViewHolder){
+            TypeCustomizeInsuranceViewHolder typeCustomizeInsuranceViewHolder = (TypeCustomizeInsuranceViewHolder) holder;
 
-            userInformationHeadViewHolder.tvBasePriceContent.setText("$" + carroBeanList.get(position).getData().getPrice() + "  /month");
-            userInformationHeadViewHolder.tvRoadTaxContent.setText("$" + (carroBeanList.get(position).getData().getRoad_tax()));
-            userInformationHeadViewHolder.tvUsageBasedInsuranceContent.setText("$" + (carroBeanList.get(position).getData().getInsurance_excess()) + "  / km");
-            userInformationHeadViewHolder.tvNamedDriversContent.setText(carroBeanList.get(position).getData().getDrivers().get(position).getName());
-            userInformationHeadViewHolder.tvInsuranceExcessContent.setText("$" + carroBeanList.get(position).getData().getInsurance_excess());
-            if (areaNumber == 1) {
-                userInformationHeadViewHolder.tvCustomizeYourInsurance.setVisibility(View.INVISIBLE);
+            customizeInsuranceBeanList = new ArrayList<>();
+            if ( carroBeanList.get(0).getData().getBase_price() == null){
+                customizeInsuranceBeanList.add(new CustomizeInsuranceBean("Base Price",""));
             }
 
-        } else if (holder instanceof SubscriptionViewHolder) {
+            customizeInsuranceBeanList.add(new CustomizeInsuranceBean("Road Tax","$ "+String.valueOf(carroBeanList.get(0).getData().getRoad_tax())));
+            customizeInsuranceBeanList.add(new CustomizeInsuranceBean("Usage Based insurance","$ "+""));
+            customizeInsuranceBeanList.add(new CustomizeInsuranceBean("Named Drivers",carroBeanList.get(0).getData().getDrivers().get(0).getName()));
+            customizeInsuranceBeanList.add(new CustomizeInsuranceBean("Insurance Excess","$ "+String.valueOf(carroBeanList.get(0).getData().getInsurance_excess())));
 
-            SubscriptionViewHolder subscriptionViewHolder = (SubscriptionViewHolder) holder;
+            if(countryCode ==1){
+                customizeInsuranceBeanList.set(2,new CustomizeInsuranceBean("Total Fine",""));
+                customizeInsuranceBeanList.set(3,new CustomizeInsuranceBean("Total Fine Amount",""));
+            }else {
 
+                customizeInsuranceBeanList.set(2,new CustomizeInsuranceBean("Usage Based insurance","$ "+""));
+                customizeInsuranceBeanList.set(3,new CustomizeInsuranceBean("Named Drivers",carroBeanList.get(0).getData().getDrivers().get(0).getName()));
+
+            }
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            subscriptionViewHolder.recyclerViewSubscription.setLayoutManager(linearLayoutManager);
-
-            if (areaNumber == 0) {
-                subscriptionOneBeanList = new ArrayList<>();
-                subscriptionOneBeanList.add(new SubscriptionBean(R.mipmap.telephone_h, "Get Help"));
-                subscriptionOneBeanList.add(new SubscriptionBean(R.mipmap.docs, "View Docs"));
-                subscriptionOneBeanList.add(new SubscriptionBean(R.mipmap.pay_ments, "Payments"));
-                subscriptionOneBeanList.add(new SubscriptionBean(R.mipmap.cancel, "Cancel Sub"));
-
-                subscriptionViewHolder.recyclerViewSubscription.setAdapter(new SubscriptionAdapter(context, subscriptionOneBeanList));
-                int space = 15;
-                subscriptionViewHolder.recyclerViewSubscription.addItemDecoration(new SpacesItemDecoration(space));
-            } else {
-                subscriptionTwoBeanList = new ArrayList<>();
-                subscriptionTwoBeanList.add(new SubscriptionBean(R.mipmap.telephone_h, "Get Help"));
-                subscriptionTwoBeanList.add(new SubscriptionBean(R.mipmap.cancel, "Cancel Sub"));
-                subscriptionTwoBeanList.add(new SubscriptionBean(R.mipmap.docs, "Total Fine"));
-                subscriptionTwoBeanList.add(new SubscriptionBean(R.mipmap.pay_ments, "Total Amount Of Fines"));
-
-
-                subscriptionViewHolder.recyclerViewSubscription.setAdapter(new SubscriptionAdapter(context, subscriptionTwoBeanList));
-                int space = 15;
-                subscriptionViewHolder.recyclerViewSubscription.addItemDecoration(new SpacesItemDecoration(space));
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            typeCustomizeInsuranceViewHolder.CustomizeInsuranceRecyclerView.setLayoutManager(linearLayoutManager);
+            typeCustomizeInsuranceViewHolder.CustomizeInsuranceRecyclerView.setAdapter(new CustomizeInsuranceAdapter(context,customizeInsuranceBeanList,carroBeanList,countryCode));
+            typeCustomizeInsuranceViewHolder.tvCustomizeInsurance.setVisibility(View.VISIBLE);
+            if(countryCode == 1){
+                typeCustomizeInsuranceViewHolder.tvCustomizeInsurance.setVisibility(View.GONE);
             }
+
+        } else if (holder instanceof TypeManageSubscriptionViewHolder) {
+
+            TypeManageSubscriptionViewHolder typeManageSubscriptionViewHolder = (TypeManageSubscriptionViewHolder) holder;
+
+            manageSubscriptionBeanList = new ArrayList<>();
+            manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_get_help, "Get Help"));
+            manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_view_docs, "View Docs"));
+            manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_payments, "Payments"));
+            manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_cancel_sub, "Cancel Sub"));
+            GridLayoutManager gridLayoutManager;
+
+            if(countryCode ==1){
+                manageSubscriptionBeanList.remove(1);
+                gridLayoutManager = new GridLayoutManager(context,manageSubscriptionBeanList.size());
+            }else {
+                manageSubscriptionBeanList.clear();
+                manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_get_help, "Get Help"));
+                manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_view_docs, "View Docs"));
+                manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_payments, "Payments"));
+                manageSubscriptionBeanList.add(new ManageSubscriptionBean(R.mipmap.image_cancel_sub, "Cancel Sub"));
+            }
+            gridLayoutManager = new GridLayoutManager(context,manageSubscriptionBeanList.size());
+            gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+            typeManageSubscriptionViewHolder.recyclerViewManageSubscription.setLayoutManager(gridLayoutManager);
+            typeManageSubscriptionViewHolder.recyclerViewManageSubscription.setAdapter(new ManageSubscriptionAdapter(context, manageSubscriptionBeanList,countryCode));
+
+
+
+        }else if (holder instanceof TypeEnhanceSubscriptionViewHolder){
+            TypeEnhanceSubscriptionViewHolder typeEnhanceSubscriptionViewHolder = (TypeEnhanceSubscriptionViewHolder) holder;
+
+            enhanceSubscriptionBeanList = new ArrayList<>();
+            enhanceSubscriptionBeanList.add(new EnhanceSubscriptionBean(R.mipmap.iv_item_enhance_sub,R.string.concierge_service_title,R.string.concierge_service_content));
+            enhanceSubscriptionBeanList.add(new EnhanceSubscriptionBean(R.mipmap.iv_item_enhance_sub,R.string.concierge_service_title,R.string.concierge_service_content));
+            enhanceSubscriptionBeanList.add(new EnhanceSubscriptionBean(R.mipmap.iv_item_enhance_sub,R.string.concierge_service_title,R.string.concierge_service_content));
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            typeEnhanceSubscriptionViewHolder.recyclerViewEnhanceSubscription.setLayoutManager(linearLayoutManager);
+            typeEnhanceSubscriptionViewHolder.recyclerViewEnhanceSubscription.setAdapter(new EnhanceSubscriptionAdapter(context, enhanceSubscriptionBeanList,countryCode));
         }
 
     }
@@ -122,66 +170,86 @@ public class UserInformationAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {
-            return USERINFORMATION;
-        } else {
-            return SUBSCRIPTION;
+            return CARINFORMATION;
+        } else if (position == 1){
+            return CUSTOMIZE_INSURANCE;
+        }else if (position == 2){
+            return MANAGE_SUBSCRIPTION;
+        }else if (position == 3){
+            return  ENHANCE_SUBSCRIPTION;
+        }else {
+            return  ENHANCE_SUBSCRIPTION;
         }
 
     }
 
-
-
     @Override
     public int getItemCount() {
-        return carroBeanList.size() +1;
+        return 4;
     }
 
-    public class UserInformationHeadViewHolder extends RecyclerView.ViewHolder {
+    public class TypeCarInformationViewHolder extends RecyclerView.ViewHolder{
+
+        TextView tvPrompt;
         ImageView ivCar;
         TextView tvMakeModel;
         TextView tvCarPlateNumber;
         ProgressBar pbUserInformation;
+        TextView tvProgressBar;
         TextView tvContentDrivenThisMonth;
         TextView tvTitleDrivenThisMonth;
         TextView tvContentUsageDueThisMonth;
         TextView tvTitleUsageDueThisMonth;
         TextView tvLastUpdated;
-        TextView tvBasePriceContent;
-        TextView tvRoadTaxContent;
-        TextView tvUsageBasedInsuranceContent;
-        TextView tvNamedDriversContent;
-        TextView tvInsuranceExcessContent;
-        TextView tvCustomizeYourInsurance;
 
-
-        public UserInformationHeadViewHolder(View itemView) {
+        public TypeCarInformationViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvPrompt = itemView.findViewById(R.id.tv_prompt);
             ivCar = itemView.findViewById(R.id.iv_car);
             tvMakeModel = itemView.findViewById(R.id.tv_make_model);
             tvCarPlateNumber = itemView.findViewById(R.id.tv_carplate_number);
             pbUserInformation = itemView.findViewById(R.id.pb_user_information);
+            tvProgressBar = itemView.findViewById(R.id.tv_progress_bar);
             tvContentDrivenThisMonth = itemView.findViewById(R.id.tv_content_driven_this_month);
             tvTitleDrivenThisMonth = itemView.findViewById(R.id.tv_title_driven_this_month);
             tvContentUsageDueThisMonth = itemView.findViewById(R.id.tv_content_usage_due_this_month);
             tvTitleUsageDueThisMonth = itemView.findViewById(R.id.tv_title_usage_due_this_month);
             tvLastUpdated = itemView.findViewById(R.id.tv_last_updated);
-            tvBasePriceContent = itemView.findViewById(R.id.tv_base_price_content);
-            tvRoadTaxContent = itemView.findViewById(R.id.tv_road_tax_content);
-            tvUsageBasedInsuranceContent = itemView.findViewById(R.id.tv_usage_based_insurance_content);
-            tvNamedDriversContent = itemView.findViewById(R.id.tv_named_drivers_content);
-            tvInsuranceExcessContent = itemView.findViewById(R.id.tv_insurance_excess_content);
-            tvCustomizeYourInsurance = itemView.findViewById(R.id.tv_customize_insurance);
         }
     }
 
-    public class SubscriptionViewHolder extends RecyclerView.ViewHolder {
-
-        RecyclerView recyclerViewSubscription;
-
-        public SubscriptionViewHolder(View itemView) {
+    public class TypeCustomizeInsuranceViewHolder extends RecyclerView.ViewHolder{
+        RecyclerView CustomizeInsuranceRecyclerView;
+        TextView tvCustomizeInsurance;
+        public TypeCustomizeInsuranceViewHolder( View itemView) {
             super(itemView);
+            CustomizeInsuranceRecyclerView = itemView.findViewById(R.id.recycler_customize_insurance);
+            tvCustomizeInsurance = itemView.findViewById(R.id.tv_customize_insurance);
 
-            recyclerViewSubscription = itemView.findViewById(R.id.recycler_subscription);
+        }
+    }
+
+    public class TypeManageSubscriptionViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tvManageYourSubscription;
+        RecyclerView recyclerViewManageSubscription;
+
+        public TypeManageSubscriptionViewHolder(View itemView) {
+            super(itemView);
+            tvManageYourSubscription = itemView.findViewById(R.id.tv_manage_your_subscription);
+            recyclerViewManageSubscription = itemView.findViewById(R.id.recycler_manage_subscription);
+        }
+    }
+
+    public class TypeEnhanceSubscriptionViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tvEnhanceYourSubscription;
+        RecyclerView recyclerViewEnhanceSubscription;
+
+        public TypeEnhanceSubscriptionViewHolder(View itemView) {
+            super(itemView);
+            tvEnhanceYourSubscription = itemView.findViewById(R.id.tv_enhance_your_subscription);
+            recyclerViewEnhanceSubscription = itemView.findViewById(R.id.recycler_enhance_your_subscription);
         }
     }
 }

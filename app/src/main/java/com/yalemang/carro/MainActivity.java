@@ -1,30 +1,18 @@
 package com.yalemang.carro;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.gson.Gson;
-import com.yalemang.adapter.MainActivityAdapyer;
-import com.yalemang.adapter.MainViewPagerAdapter;
-import com.yalemang.adapter.PopularCategorlesAdapter;
+import com.yalemang.adapter.main.MainActivityAdapyer;
+import com.yalemang.adapter.main.MainViewPagerAdapter;
 import com.yalemang.bean.CarBean;
 import com.yalemang.bean.CarroBean;
 import com.yalemang.bean.TitleBean;
@@ -47,10 +35,9 @@ import okhttp3.Response;
 /**
  * @author Administrator
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BeasActivity {
 
 
-    TextView user;
     List<CarBean> carBeanList = new ArrayList<>();
     List<TitleBean> titleBeansList = new ArrayList<>();
     RecyclerView mainRecyclerView;
@@ -59,48 +46,26 @@ public class MainActivity extends AppCompatActivity {
     MainViewPagerAdapter mainViewPagerAdapter;
     private static final String TAG = "MainActivity";
     private static String Url = "https://gist.githubusercontent.com/heinhtetaung92/fbfd371881e6982c71971eedd5732798/raw/00e14e0e5502dbcf1ea9a2cdc44324fd3a5492e7/test.json ";
+    TextView tvUsed;
 
     @OnClick({R.id.used_tv})
-     void onClick(View view){
-        switch (view.getId()){
+    void onClick(View view) {
+        switch (view.getId()) {
             case R.id.used_tv:
 
-                final String[] area = new String[]{"新加坡", "泰国"};
-                AlertDialog dialog = null;
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                dialog = builder.setIcon(R.mipmap.used)
-                        .setTitle("请选择您所在的地区")
-                        .setItems(area, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "你选择了" + area[which], Toast.LENGTH_SHORT).show();
-
-                                int  areaNumber = which;
-                                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
-                                intent.putExtra("areaNumber",areaNumber);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }).create();
-                dialog.show();
-
-
+                Intent intent = new Intent(MainActivity.this, UserInformationActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             default:
         }
 
 
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: 死在初始化绑定布局后");
-        initView();
-        addCarPhoto();
-        initData();
-        //requestLogin();
 
+    @Override
+    protected int setLayout() {
+        return R.layout.activity_main;
     }
 
     private void requestLogin() {
@@ -125,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     String json = response.body().string();
                     Gson gson = new Gson();
                     CarroBean carroBean = gson.fromJson(json, CarroBean.class);
-                    Log.d(TAG, " 测试");
-                    Log.d(TAG, "requestLogin: " + carroBean.getData().getModel());
+
                 } else {
                     //服务器返回404 505类错误
 
@@ -137,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void initData() {
-
+    @Override
+    protected void initData() {
+        addCarPhoto();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mainRecyclerView.setLayoutManager(linearLayoutManager);
@@ -148,16 +113,21 @@ public class MainActivity extends AppCompatActivity {
         mainRecyclerView.addItemDecoration(new SpacesItemDecoration(space));
     }
 
-    private void initView() {
-        Log.d(TAG, "initView: 死在这");
-        mainRecyclerView = findViewById(R.id.recycler_view_main);
-        //user = findViewById(R.id.used_tv);
+    @Override
+    protected void bindView() {
+        Log.d(TAG, "initView: 在这");
         ButterKnife.bind(this);
+        mainRecyclerView = findViewById(R.id.recycler_view_main);
+        tvUsed = findViewById(R.id.used_tv);
+    }
+
+    private void initView() {
+
+
     }
 
     private void addCarPhoto() {
-        Log.d(TAG, "addCarPhoto: 死在这");
-        carBeanList.add(new CarBean(R.mipmap.b, "SUV", "view 30 cars >", "[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat", "2018 Honda CR_V LX", "Rp 70 - 90 juta", "Qty:30"));
+        Log.d(TAG, "addCarPhoto: 在这");
         carBeanList.add(new CarBean(R.mipmap.e, "SUV", "view 30 cars", "[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat", "2018 Honda CR_V LX", "Rp 70 - 90 juta", "Qty:30"));
         carBeanList.add(new CarBean(R.mipmap.d, "SUV", "view 30 cars", "[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat", "2018 Honda CR_V LX", "Rp 70 - 90 juta", "Qty:30"));
         carBeanList.add(new CarBean(R.mipmap.f, "SUV", "view 30 cars", "[TJ]Suzukl Carry Pick Up", "Pajak:Mei 2019", "Lokasi: Jawa Barat", "2018 Honda CR_V LX", "Rp 70 - 90 juta", "Qty:30"));
@@ -183,5 +153,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        carBeanList.clear();
+//        titleBeansList.clear();
+    }
 }

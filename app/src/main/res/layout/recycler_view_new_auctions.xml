@@ -15,7 +15,7 @@
             android:layout_height="260dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@mipmap/b" />
+            android:src="@mipmap/a" />
     </RelativeLayout>
 
     <TextView
@@ -45,6 +45,5 @@
         android:layout_gravity="left"
         android:text="view 32 cars >"
         android:textColor="@color/main_table_color2" />
-
 
 </LinearLayout>

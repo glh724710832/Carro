@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -114,7 +114,6 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
 
 //                LayoutInflater layoutInflater = getLayoutInflater();
 //                viewArrayList.add(getLayoutInflater().inflate(R.layout.view_pager_one, null, false));
-//
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_one, null, false));
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_one, null, false));
 //                viewArrayList.add(layoutInflater.inflate(R.layout.view_pager_two, null, false));

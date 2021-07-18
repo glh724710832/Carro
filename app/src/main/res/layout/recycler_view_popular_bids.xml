@@ -11,7 +11,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/b" />
+        android:src="@mipmap/suv2" />
 
     <TextView
         android:id="@+id/tv_recycler_tj_popular_bids"
@@ -40,6 +40,5 @@
         android:text="view 32 cars >"
         android:textColor="@color/main_table_color2"
         android:textSize="12sp" />
-
 
 </LinearLayout>

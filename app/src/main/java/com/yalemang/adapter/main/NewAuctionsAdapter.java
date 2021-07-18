@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,14 +18,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.PopularBidsViewHolder> {
+/**
+ * @author Administrator
+ */
+public class NewAuctionsAdapter extends RecyclerView.Adapter<NewAuctionsAdapter.NewAuctionsViewHolder> {
 
     private Context context;
     private List<CarBean> carBeanList;
     private OnItemClickListener onItemClickListener;
     Set<Integer> onItemClickSet;
 
-    public PopularBidsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
+    public NewAuctionsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.onItemClickListener = onItemClickListener;
@@ -34,21 +37,21 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
 
 
     @Override
-    public PopularBidsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_popular_bids, null);
-        PopularBidsViewHolder popularBidsViewHolder = new PopularBidsViewHolder(view);
-        return popularBidsViewHolder;
+    public NewAuctionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_new_auctions, null);
+        NewAuctionsViewHolder newAuctionsViewHolder = new NewAuctionsViewHolder(view);
+        return newAuctionsViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PopularBidsAdapter.PopularBidsViewHolder holder, int position) {
+    public void onBindViewHolder(NewAuctionsAdapter.NewAuctionsViewHolder holder, int position) {
 
-        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewPopularBids);
+        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewNewAuctions);
 
-        holder.tvRecyclerViewTjPopularBids.setText(carBeanList.get(position).getTj());
-        holder.tvRecyclerViewDatePopularBids.setText(carBeanList.get(position).getDate());
-        holder.tvRecyclerViewBelongPopularBids.setText(carBeanList.get(position).getBelong());
-        holder.ivRecyclerViewPopularBids.setOnClickListener(new View.OnClickListener() {
+        holder.tvRecyclerViewTjNewAuctions.setText(carBeanList.get(position).getTj());
+        holder.tvRecyclerViewDateNewAuctions.setText(carBeanList.get(position).getDate());
+        holder.tvRecyclerViewBelongNewAuctions.setText(carBeanList.get(position).getBelong());
+        holder.ivRecyclerViewNewAuctions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +73,6 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
             }
         });
 
-
     }
 
     @Override
@@ -78,18 +80,18 @@ public class PopularBidsAdapter extends RecyclerView.Adapter<PopularBidsAdapter.
         return carBeanList.size();
     }
 
-    public static class PopularBidsViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivRecyclerViewPopularBids;
-        TextView tvRecyclerViewTjPopularBids;
-        TextView tvRecyclerViewDatePopularBids;
-        TextView tvRecyclerViewBelongPopularBids;
+    public static class NewAuctionsViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivRecyclerViewNewAuctions;
+        TextView tvRecyclerViewTjNewAuctions;
+        TextView tvRecyclerViewDateNewAuctions;
+        TextView tvRecyclerViewBelongNewAuctions;
 
-        public PopularBidsViewHolder(View itemView) {
+        public NewAuctionsViewHolder(View itemView) {
             super(itemView);
-            ivRecyclerViewPopularBids = itemView.findViewById(R.id.iv_recycler_popular_bids);
-            tvRecyclerViewTjPopularBids = itemView.findViewById(R.id.tv_recycler_tj_popular_bids);
-            tvRecyclerViewDatePopularBids = itemView.findViewById(R.id.tv_recycler_date_popular_bids);
-            tvRecyclerViewBelongPopularBids = itemView.findViewById(R.id.tv_recycler_belong_popular_bids);
+            ivRecyclerViewNewAuctions = itemView.findViewById(R.id.iv_recycler_new_auctions);
+            tvRecyclerViewTjNewAuctions = itemView.findViewById(R.id.tv_recycler_tj_new_auctions);
+            tvRecyclerViewDateNewAuctions = itemView.findViewById(R.id.tv_recycler_date_new_auctions);
+            tvRecyclerViewBelongNewAuctions = itemView.findViewById(R.id.tv_recycler_belong_new_auctions);
         }
     }
 

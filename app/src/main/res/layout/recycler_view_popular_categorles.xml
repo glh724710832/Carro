@@ -11,7 +11,7 @@
         android:layout_height="180dp"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
-        android:src="@mipmap/b" />
+        android:src="@mipmap/best" />
 
     <TextView
         android:id="@+id/tv_recycler_model_popular_categorles"
