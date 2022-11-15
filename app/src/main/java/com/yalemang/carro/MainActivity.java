@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import com.google.gson.Gson;
-import com.yalemang.adapter.main.MainActivityAdapyer;
+import com.yalemang.adapter.main.MainActivityAdapter;
 import com.yalemang.adapter.main.MainViewPagerAdapter;
 import com.yalemang.bean.CarBean;
 import com.yalemang.bean.CarroBean;
@@ -35,7 +35,7 @@ import okhttp3.Response;
 /**
  * @author Administrator
  */
-public class MainActivity extends BeasActivity {
+public class MainActivity extends BaseActivity {
 
 
     List<CarBean> carBeanList = new ArrayList<>();
@@ -107,7 +107,7 @@ public class MainActivity extends BeasActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mainRecyclerView.setLayoutManager(linearLayoutManager);
-        mainRecyclerView.setAdapter(new MainActivityAdapyer(this, carBeanList, titleBeansList));
+        mainRecyclerView.setAdapter(new MainActivityAdapter(this, carBeanList, titleBeansList));
 
         int space = 30;
         mainRecyclerView.addItemDecoration(new SpacesItemDecoration(space));

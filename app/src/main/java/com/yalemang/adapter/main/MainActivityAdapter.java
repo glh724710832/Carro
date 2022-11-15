@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
     private List<CarBean> carBeanList;
@@ -40,7 +40,7 @@ public class MainActivityAdapyer extends RecyclerView.Adapter<RecyclerView.ViewH
     MainViewPagerAdapter mainViewPagerAdapter;
 
 
-    public MainActivityAdapyer(Context context, List<CarBean> carBeanList, List<TitleBean> titleBeansList) {
+    public MainActivityAdapter(Context context, List<CarBean> carBeanList, List<TitleBean> titleBeansList) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.titleBeansList = titleBeansList;

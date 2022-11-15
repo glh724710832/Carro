@@ -35,6 +35,7 @@ public class UserInformationAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private List<ManageSubscriptionBean> manageSubscriptionBeanList;
     private List<EnhanceSubscriptionBean> enhanceSubscriptionBeanList;
     private int countryCode;
+    
 
     private List<ManageSubscriptionBean> subscriptionTwoBeanList;
 
