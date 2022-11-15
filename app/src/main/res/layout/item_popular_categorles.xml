@@ -2,35 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    android:padding="10dp"
-    android:background="@drawable/main_recyclerview_shape">
+    android:background="@drawable/main_recyclerview_shape"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
         <TextView
             android:id="@+id/tv_title_popular_categprles"
-            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="left"
             android:text="Popular Categprles"
-            android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_see_more_popular_categprles"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center|right"
-            android:text="See more    >"
             android:paddingRight="15dp"
-            android:textColor="@color/black"/>
+            android:text="See more    >"
+            android:textColor="@color/black" />
+
 
     </LinearLayout>
 
@@ -38,6 +40,6 @@
         android:id="@+id/popular_categprles_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_bar"/>
+        android:layout_below="@id/title_bar" />
 
 </RelativeLayout>

@@ -8,7 +8,8 @@
         android:id="@+id/view_pager_main"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        android:paddingBottom="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,14 +31,13 @@
                 android:id="@+id/used_cars_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/used_cars"
-                android:scaleType="center"/>
+                android:scaleType="center"
+                android:src="@mipmap/used_cars" />
 
             <TextView
                 android:id="@+id/used_cars_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Used Cars"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -57,14 +57,13 @@
                 android:id="@+id/new_cars_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/new_cars"
-                android:scaleType="center"/>
+                android:scaleType="center"
+                android:src="@mipmap/new_cars" />
 
             <TextView
                 android:id="@+id/new_cars_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="New Cars"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -84,14 +83,13 @@
                 android:id="@+id/financing_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/financing"
-                android:scaleType="center"/>
+                android:scaleType="center"
+                android:src="@mipmap/financing" />
 
             <TextView
                 android:id="@+id/financing_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Financing"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -111,14 +109,13 @@
                 android:id="@+id/calculator_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/calculator"
-                android:scaleType="center"/>
+                android:scaleType="center"
+                android:src="@mipmap/calculator" />
 
             <TextView
                 android:id="@+id/calculator_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Calculator"
                 android:textColor="@color/black"
                 android:textSize="16sp"

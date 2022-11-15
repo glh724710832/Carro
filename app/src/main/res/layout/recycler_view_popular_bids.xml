@@ -2,55 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/main_recyclerview_background"
-    android:padding="20dp">
+    android:orientation="vertical">
 
 
-
-        <ImageView
-            android:id="@+id/iv_recycler_popular_bids"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-
-            android:src="@mipmap/b"
-            android:scaleType="centerCrop"/>
-
-
+    <ImageView
+        android:id="@+id/iv_recycler_popular_bids"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/suv2" />
 
     <TextView
         android:id="@+id/tv_recycler_tj_popular_bids"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="Hatchback"
-        android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="16sp"
-        android:textColor="@color/black"/>
-        <TextView
-            android:id="@+id/tv_recycler_date_popular_bids"
+        android:textStyle="bold" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:text="Hatchback"
+    <TextView
+        android:id="@+id/tv_recycler_date_popular_bids"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:text="Hatchback"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/tv_recycler_belong_popular_bids"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:text="view 32 cars >"
-            android:textSize="12sp"
-            android:layout_gravity="left"
-            android:textColor="@color/main_table_color2"/>
-
-
-
-
+    <TextView
+        android:id="@+id/tv_recycler_belong_popular_bids"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:text="view 32 cars >"
+        android:textColor="@color/main_table_color2"
+        android:textSize="12sp" />
 
 </LinearLayout>

@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/main_table_color"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
 
         <TextView
@@ -37,20 +39,16 @@
             android:id="@+id/search_edt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
             android:background="@drawable/search_shape"
             android:drawableLeft="@mipmap/search"
-
             android:hint="@string/search_for_make_model_submodel"
-            android:textColorHint="#95A1AA"
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:textColorHint="#95A1AA" />
 
 
     </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_main"

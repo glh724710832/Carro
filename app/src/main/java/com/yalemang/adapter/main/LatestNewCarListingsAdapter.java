@@ -1,4 +1,4 @@
-package com.yalemang.adapter;
+package com.yalemang.adapter.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -23,9 +23,9 @@ public class LatestNewCarListingsAdapter extends RecyclerView.Adapter<LatestNewC
     private Context context;
     private List<CarBean> carBeanList;
     private OnItemClickListener onItemClickListener;
-    Set<Integer> onItemClickSet;;
+    Set<Integer> onItemClickSet;
 
-    public LatestNewCarListingsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener){
+    public LatestNewCarListingsAdapter(Context context, List<CarBean> carBeanList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.carBeanList = carBeanList;
         this.onItemClickListener = onItemClickListener;
@@ -34,8 +34,8 @@ public class LatestNewCarListingsAdapter extends RecyclerView.Adapter<LatestNewC
 
 
     @Override
-    public LatestNewCarListingsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_latest_new_car_listings,null);
+    public LatestNewCarListingsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_latest_new_car_listings, null);
         LatestNewCarListingsViewHolder latestNewCarListingsViewHolder = new LatestNewCarListingsViewHolder(view);
         return latestNewCarListingsViewHolder;
     }
@@ -43,27 +43,27 @@ public class LatestNewCarListingsAdapter extends RecyclerView.Adapter<LatestNewC
     @Override
     public void onBindViewHolder(LatestNewCarListingsAdapter.LatestNewCarListingsViewHolder holder, int position) {
 
-        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.iv_recycler_latest_new_car_listings);
-        holder.tv_recycler_type_latest_new_car_listings.setText(carBeanList.get(position).getType());
-        holder.tv_recycler_rp_latest_new_car_listings.setText(carBeanList.get(position).getRp());
-        holder.tv_recycler_qty_latest_new_car_listings.setText(carBeanList.get(position).getQty());
-        holder.iv_recycler_latest_new_car_listings.setOnClickListener(new View.OnClickListener() {
+        Glide.with(context).load(carBeanList.get(position).getPhotoPath()).into(holder.ivRecyclerViewLatestNewCarListings);
+        holder.tvRecyclerViewTypeLatestNewCarListings.setText(carBeanList.get(position).getType());
+        holder.tvRecyclerViewRpLatestNewCarListings.setText(carBeanList.get(position).getRp());
+        holder.tvRecyclerViewQtyLatestNewCarListings.setText(carBeanList.get(position).getQty());
+        holder.ivRecyclerViewLatestNewCarListings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onItemClickListener.onItemClick(position,holder.itemView);
+                        onItemClickListener.onItemClick(position, holder.itemView);
                         boolean isAdd = onItemClickSet.add(position);
-                        if(!isAdd){
+                        if (!isAdd) {
                             holder.itemView.setBackgroundColor(Color.GRAY);
                             onItemClickSet.remove(position);
                         }
                     }
                 });
-                if(onItemClickSet.contains(position)){
+                if (onItemClickSet.contains(position)) {
                     holder.itemView.setBackgroundColor(Color.RED);
-                }else {
+                } else {
                     holder.itemView.setBackgroundColor(Color.GRAY);
                 }
             }
@@ -78,20 +78,21 @@ public class LatestNewCarListingsAdapter extends RecyclerView.Adapter<LatestNewC
     }
 
     public static class LatestNewCarListingsViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_recycler_latest_new_car_listings;
-        TextView tv_recycler_type_latest_new_car_listings;
-        TextView tv_recycler_rp_latest_new_car_listings;
-        TextView tv_recycler_qty_latest_new_car_listings;
-        public LatestNewCarListingsViewHolder( View itemView) {
+        ImageView ivRecyclerViewLatestNewCarListings;
+        TextView tvRecyclerViewTypeLatestNewCarListings;
+        TextView tvRecyclerViewRpLatestNewCarListings;
+        TextView tvRecyclerViewQtyLatestNewCarListings;
+
+        public LatestNewCarListingsViewHolder(View itemView) {
             super(itemView);
-            iv_recycler_latest_new_car_listings = itemView.findViewById(R.id.iv_recycler_latest_new_car_listings);
-            tv_recycler_type_latest_new_car_listings = itemView.findViewById(R.id.tv_recycler_type_latest_new_car_listings);
-            tv_recycler_rp_latest_new_car_listings = itemView.findViewById(R.id.tv_recycler_rp_latest_new_car_listings);
-            tv_recycler_qty_latest_new_car_listings = itemView.findViewById(R.id.tv_recycler_qty_latest_new_car_listings);
+            ivRecyclerViewLatestNewCarListings = itemView.findViewById(R.id.iv_recycler_latest_new_car_listings);
+            tvRecyclerViewTypeLatestNewCarListings = itemView.findViewById(R.id.tv_recycler_type_latest_new_car_listings);
+            tvRecyclerViewRpLatestNewCarListings = itemView.findViewById(R.id.tv_recycler_rp_latest_new_car_listings);
+            tvRecyclerViewQtyLatestNewCarListings = itemView.findViewById(R.id.tv_recycler_qty_latest_new_car_listings);
         }
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(int position,View view);
+    public interface OnItemClickListener {
+        void onItemClick(int position, View view);
     }
 }
